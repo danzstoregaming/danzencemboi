@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DanzStoreGaming.my.id</title>
+
+  <!-- Font & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet" href="product-style.css"/>
+</head>
+<body>
+<header class="flat-full-header">
+  <div class="header-content">
+    <div class="header-left">
+      <img src="https://i.imghippo.com/files/One7372Dp.png" alt="logo" class="header-logo">
+    </div>
+    <h1 class="header-title">DanzStoreGaming</h1>
+    <a href="index.html" class="header-right">
+      <i class="fa-solid fa-house"></i>
+    </a>
+  </div>
+</header>
+
+<main id="product-page">
+  <!-- [1] Product Info -->
+  <section id="product-info" class="product-card">
+    <img id="product-img" alt="Product Image">
+    <div class="info-details">
+      <h2 id="product-name">Product Name</h2>
+      <p class="sub-info"><span id="product-region">All Server</span> • <span id="product-via">Log-In</span></p>
+      <ul class="product-tags">
+        <li><i class="fa-solid fa-bolt"></i> Fast Process</li>
+        <li><i class="fa-solid fa-shield-halved"></i> Safe & Legit</li>
+        <li><i class="fa-solid fa-headset"></i> Manual Process</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- [2] Description -->
+  <section id="description-section" class="card-section open">
+    <button class="section-head desc-toggle" type="button">
+      <div class="title-with-num">
+        <span class="badge-num"><i class="fa-solid fa-exclamation"></i></span>
+        <span>Description Item</span>
+      </div>
+      <i class="fa-solid fa-chevron-down caret"></i>
+    </button>
+    <div class="desc-content" id="product-description">
+      Maklumat produk ini akan dikemaskini.
+    </div>
+  </section>
+
+  <!-- [3] (1) Select Product -->
+  <section id="select-product" class="card-section">
+    <div class="section-head">
+      <div class="title-with-num">
+        <span class="badge-num">1</span><span>Select Product</span>
+      </div>
+    </div>
+    <p class="helper">Sila pilih salah satu item di bawah.</p>
+    <!-- Container kosong, JS akan buat group: Diamond / Game Pass -->
+    <div id="select-list"></div>
+
+    <!-- ========== RANK BOOSTER SECTION (AUTO FOR JOKI RANKED PER STAR) ========== -->
+    <div id="rank-booster" class="rank-section" style="display:none;">
+
+      <div class="rank-header"><span>FROM</span></div>
+
+      <!-- FROM RANK LIST -->
+      <div class="rank-box">
+        <div class="rank-title">Rank Mula</div>
+        <div id="from-rank-list" class="rank-list scroll-y"></div>
+      </div>
+
+      <!-- FROM STAR LIST -->
+      <div class="rank-box">
+        <div class="rank-title">Star Mula</div>
+        <div id="from-star-list" class="rank-list scroll-y"></div>
+      </div>
+
+      <div class="rank-header"><span>TARGET</span></div>
+
+      <!-- TARGET RANK LIST -->
+      <div class="rank-box">
+        <div class="rank-title">Rank Target</div>
+        <div id="to-rank-list" class="rank-list scroll-y"></div>
+      </div>
+
+      <!-- TARGET STAR LIST -->
+      <div class="rank-box">
+        <div class="rank-title">Star Target</div>
+        <div id="to-star-list" class="rank-list scroll-y"></div>
+      </div>
+
+      <div id="rank-result" class="rank-result">
+        Total Bintang: 0<br>
+        Total Harga: RM 0.00
+      </div>
+
+    </div>
+    <!-- ========== END RANK BOOSTER ========== -->
+
+  </section>
+
+  <!-- [4] (2) Buyer Information -->
+  <section id="buyer-info" class="card-section">
+    <div class="section-head">
+      <div class="title-with-num">
+        <span class="badge-num">2</span><span>Buyer Information</span>
+      </div>
+    </div>
+    <p class="helper">Sila Isi Form Dengan Betul.</p>
+    <div id="buyer-fields"></div>
+  </section>
+
+  <!-- [5] (3) Payment Method -->
+  <section id="payment-method" class="card-section open">
+    <button class="section-head pay-toggle" type="button">
+      <div class="title-with-num">
+        <span class="badge-num">3</span><span>Payment Method</span>
+      </div>
+      <i class="fa-solid fa-chevron-down caret"></i>
+    </button>
+    <div class="pay-content">
+      <p class="helper">Sila pilih cara pembayaran anda.</p>
+      <div id="payment-tiles" class="pay-grid">
+        <button class="pay-tile" data-value="QR Pay"><i class="fa-solid fa-qrcode"></i><span>QR Pay</span></button>
+        <button class="pay-tile" data-value="Bank Transfer"><i class="fa-solid fa-building-columns"></i><span>Bank Transfer</span></button>
+        <button class="pay-tile" data-value="Touch 'n Go"><i class="fa-solid fa-mobile-screen-button"></i><span>Touch 'n Go</span></button>
+        <button class="pay-tile" data-value="Touch 'n Go Pin"><i class="fa-solid fa-key"></i><span>Touch 'n Go Pin</span></button>
+        <button class="pay-tile" data-value="ShopeePay"><i class="fa-brands fa-shopify"></i><span>ShopeePay</span></button>
+        <button class="pay-tile" data-value="Boost"><i class="fa-solid fa-bolt"></i><span>Boost</span></button>
+      </div>
+      <input type="hidden" id="payment-selected" />
+    </div>
+  </section>
+
+  <!-- [6] (4) Voucher Code -->
+  <section id="voucher-section" class="card-section">
+    <div class="section-head">
+      <div class="title-with-num">
+        <span class="badge-num">4</span><span>Voucher Code</span>
+      </div>
+    </div>
+    <p class="helper">Biarkan kosong jika tiada.</p>
+    <div class="voucher-row">
+      <input type="text" id="voucher-code" placeholder="Masukkan kod voucher jika ada">
+      <button id="use-voucher" type="button" class="use-btn">Use</button>
+    </div>
+    <div id="voucher-status" class="voucher-status"></div>
+  </section>
+
+  <!-- [7] (5) WhatsApp -->
+  <section id="whatsapp-section" class="card-section">
+    <div class="section-head">
+      <div class="title-with-num">
+        <span class="badge-num">5</span><span>Confirm Order via WhatsApp</span>
+      </div>
+    </div>
+    <p class="helper">Isi nombor WhatsApp untuk dihubungi.</p>
+    <label for="buyer-phone" class="label">Nombor WhatsApp Anda</label>
+    <input
+  type="tel"
+  id="buyer-phone"
+  inputmode="numeric"
+  pattern="[0-9]*"
+  autocomplete="tel"
+  placeholder="Contoh: 60123456789"
+/>
+    <button id="confirmOrderBtn" class="cta">Hantar Order ke WhatsApp</button>
+  </section>
+</main>
+
+<!-- ==== Custom Error Modal DSG ==== -->
+<div id="errorModal" class="error-modal-backdrop">
+  <div class="error-modal">
+    <div class="error-modal-icon">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+    </div>
+    <h2 class="error-modal-title">Perhatian</h2>
+    <p id="errorModalMessage" class="error-modal-message">
+      Ralat mesej di sini.
+    </p>
+    <button id="errorModalOk" type="button" class="error-modal-btn">
+      OK, Faham
+    </button>
+  </div>
+</div>
+
+<!-- ===== FOOTER START ===== -->
+<footer class="footer">
+
+  <div class="footer-logo-box">
+    <!-- Logo atas, tengah -->
+    <img src="https://i.postimg.cc/j5MrLsym/Picsart-25-11-20-19-50-19-025.png"
+         alt="DanzStoreGaming" class="footer-logo">
+
+    <!-- Nama brand -->
+    <h2 class="footer-title">DanzStoreGaming</h2>
+
+    <!-- Tagline -->
+    <p class="footer-subtitle">Trusted Gaming &amp; Joki Services</p>
+  </div>
+
+  <!-- Penerangan -->
+  <p class="footer-desc">
+    <strong>DanzStoreGaming</strong> ialah platform top-up game yang dipercayai oleh komuniti pemain
+    di seluruh Malaysia. Kami menawarkan servis pantas, harga berpatutan &amp; urusan selamat —
+    komited memberikan pengalaman top-up terbaik untuk para gamer tempatan 🎮✨
+  </p>
+
+  <!-- CONTACT -->
+  <h3 class="footer-heading">CONTACT US</h3>
+
+  <p class="footer-text">+601139337462</p>
+  <p class="footer-text">71700 Negeri Sembilan</p>
+  <p class="footer-text">danzstoregaming7462@gmail.com</p>
+
+  <!-- FOLLOW -->
+  <h3 class="footer-heading footer-follow-title">FOLLOW US</h3>
+
+  <div class="footer-social">
+    <a href="https://wa.me/601139337462" target="_blank" rel="noopener">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" class="social-icon">
+    </a>
+    <a href="https://t.me/DanzStoreGaming" target="_blank" rel="noopener">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" class="social-icon">
+    </a>
+    <a href="https://www.tiktok.com/@danzstoregaming_" target="_blank" rel="noopener">
+      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok" class="social-icon">
+    </a>
+  </div>
+
+  <p class="footer-copy">© 2026 danzstoregaming.my.id. All Rights Reserved.</p>
+</footer>
+<!-- ===== FOOTER END ===== -->
+
+<script src="product.js" defer></script>
+</body>
+</html>
