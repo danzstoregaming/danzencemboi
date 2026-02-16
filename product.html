@@ -116,27 +116,59 @@
     <div id="buyer-fields"></div>
   </section>
 
-  <!-- [5] (3) Payment Method -->
-  <section id="payment-method" class="card-section open">
-    <button class="section-head pay-toggle" type="button">
-      <div class="title-with-num">
-        <span class="badge-num">3</span><span>Payment Method</span>
-      </div>
-      <i class="fa-solid fa-chevron-down caret"></i>
-    </button>
-    <div class="pay-content">
-      <p class="helper">Sila pilih cara pembayaran anda.</p>
-      <div id="payment-tiles" class="pay-grid">
-        <button class="pay-tile" data-value="QR Pay"><i class="fa-solid fa-qrcode"></i><span>QR Pay</span></button>
-        <button class="pay-tile" data-value="Bank Transfer"><i class="fa-solid fa-building-columns"></i><span>Bank Transfer</span></button>
-        <button class="pay-tile" data-value="Touch 'n Go"><i class="fa-solid fa-mobile-screen-button"></i><span>Touch 'n Go</span></button>
-        <button class="pay-tile" data-value="Touch 'n Go Pin"><i class="fa-solid fa-key"></i><span>Touch 'n Go Pin</span></button>
-        <button class="pay-tile" data-value="ShopeePay"><i class="fa-brands fa-shopify"></i><span>ShopeePay</span></button>
-        <button class="pay-tile" data-value="Boost"><i class="fa-solid fa-bolt"></i><span>Boost</span></button>
-      </div>
-      <input type="hidden" id="payment-selected" />
+<!-- [5] (3) Payment Method -->
+<section id="payment-method" class="card-section open">
+  <button class="section-head pay-toggle" type="button">
+    <div class="title-with-num">
+      <span class="badge-num">3</span>
+      <span>Payment Method</span>
     </div>
-  </section>
+    <i class="fa-solid fa-chevron-down caret"></i>
+  </button>
+
+  <div class="pay-content">
+    <p class="helper">Sila pilih cara pembayaran anda.</p>
+
+    <div id="payment-tiles" class="pay-grid">
+
+      <!-- WALLET -->
+      <button class="pay-tile" data-value="Wallet">
+        <i class="fa-solid fa-wallet"></i>
+        <span>Wallet</span>
+        <small id="wallet-mini" style="font-size:.75rem; opacity:.7; margin-top:4px;">
+          (MYR 0.00)
+        </small>
+      </button>
+
+      <!-- QR PAY -->
+      <button class="pay-tile" data-value="QR Pay">
+        <i class="fa-solid fa-qrcode"></i>
+        <span>QR Pay</span>
+      </button>
+
+      <!-- SHOPEEPAY -->
+      <button class="pay-tile" data-value="ShopeePay">
+        <i class="fa-brands fa-shopify"></i>
+        <span>ShopeePay</span>
+      </button>
+
+      <!-- TNG EWALLET -->
+      <button class="pay-tile" data-value="Touch 'N Go E-Wallet">
+        <i class="fa-solid fa-mobile-screen-button"></i>
+        <span>Touch 'N Go E-Wallet</span>
+      </button>
+
+      <!-- TNG PIN -->
+      <button class="pay-tile" data-value="Touch 'N Go Pin">
+        <i class="fa-solid fa-key"></i>
+        <span>Touch 'N Go Pin</span>
+      </button>
+
+    </div>
+
+    <input type="hidden" id="payment-selected" />
+  </div>
+</section>
 
   <!-- [6] (4) Voucher Code -->
   <section id="voucher-section" class="card-section">
@@ -239,5 +271,28 @@
 <!-- ===== FOOTER END ===== -->
 
 <script src="product.js" defer></script>
+<!-- ===== MINI ADMIN PANEL ===== -->
+<div id="adminPanel" style="
+position:fixed;
+bottom:20px;
+right:20px;
+background:#111;
+border:2px solid #00e0ff;
+padding:15px;
+border-radius:12px;
+display:none;
+z-index:9999;
+color:white;
+width:260px;
+">
+  <h3 style="margin:0 0 10px 0;">Admin Wallet</h3>
+
+  <input id="adminPhone" placeholder="Phone (6012...)" style="width:100%;margin-bottom:8px;padding:6px;">
+  <input id="adminAmount" type="number" placeholder="Amount" style="width:100%;margin-bottom:8px;padding:6px;">
+
+  <button id="adminAddBtn" style="width:100%;padding:8px;background:#00e0ff;border:none;font-weight:bold;">
+    Add Balance
+  </button>
+</div>
 </body>
 </html>

@@ -1,3 +1,42 @@
+// ===== DSG WALLET CONFIG =====
+const WALLET_NAME = "Wallet"; // nanti tukar jadi "Vault"
+const CURRENCY = "MYR";       // nanti tukar jadi "DM"
+
+function walletKey(phone){
+  return `DSG_WALLET_${phone}`;
+}
+function getWallet(phone){
+  const v = Number(localStorage.getItem(walletKey(phone)) || 0);
+  return Number.isFinite(v) ? v : 0;
+}
+function setWallet(phone, amount){
+  localStorage.setItem(walletKey(phone), Number(amount).toFixed(2));
+}
+function formatMoney(n){
+  return `${CURRENCY} ${Number(n).toFixed(2)}`;
+}
+
+// ===== ADMIN COMMAND (Console Only) =====
+window.addBalance = function(phone, amount){
+  if(!phone || !amount){
+    console.warn("Usage: addBalance('60123456789', 20)");
+    return;
+  }
+
+  const current = getWallet(phone);
+  const newBal = current + Number(amount);
+
+  setWallet(phone, newBal);
+
+  console.log(
+    `✅ Balance updated:
+Phone: ${phone}
+Old: ${formatMoney(current)}
+Added: ${formatMoney(amount)}
+New: ${formatMoney(newBal)}`
+  );
+};
+
 document.addEventListener("DOMContentLoaded", () => { // ===== Voucher text (SAFE) =====
 let voucherText = "Tiada";
 if (window.appliedVoucher) {
@@ -2141,5 +2180,38 @@ if (isCinemasPage(nama)) {
   renderBuyer();
   toggleEpisodes();
   initDsgSelects();
+// ===== MINI ADMIN PANEL =====
+const adminPanel = document.getElementById("adminPanel");
+
+let tapCount = 0;
+
+document.querySelector(".header-logo")?.addEventListener("click", () => {
+  tapCount++;
+  if(tapCount >= 5){
+    adminPanel.style.display =
+      adminPanel.style.display === "none" ? "block" : "none";
+    tapCount = 0;
+  }
+});
+
+document.getElementById("adminAddBtn")?.addEventListener("click", () => {
+  const phone = document.getElementById("adminPhone").value.trim();
+  const amount = Number(document.getElementById("adminAmount").value);
+
+  if(!phone || !amount){
+    alert("Isi phone & amount dulu.");
+    return;
+  }
+
+  const current = getWallet(phone);
+  const newBal = current + amount;
+
+  setWallet(phone, newBal);
+
+  alert("Balance updated!\nNew Balance: " + formatMoney(newBal));
+
+  document.getElementById("adminPhone").value = "";
+  document.getElementById("adminAmount").value = "";
+});
 
 });   // tutup DOMContentLoaded
